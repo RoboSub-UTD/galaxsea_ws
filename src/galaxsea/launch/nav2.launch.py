@@ -8,8 +8,8 @@ import os
 
 def generate_launch_description():
     nav2_bringup = get_package_share_directory('nav2_bringup')
-    nav2_params = '/root/roboboat_ws/src/galaxsea/params/nav2_params.yaml'
-    thruster_params = '/root/roboboat_ws/src/galaxsea/params/auto_thruster_move_params.yaml'
+    nav2_params = '/root/galaxsea_ws/src/galaxsea/params/nav2_params.yaml'
+    thruster_params = '/root/galaxsea_ws/src/galaxsea/params/auto_thruster_move_params.yaml'
 
     thruster_params_type = LaunchConfiguration('thruster_params_type')
 

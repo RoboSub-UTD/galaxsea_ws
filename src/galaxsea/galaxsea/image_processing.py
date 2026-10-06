@@ -39,7 +39,7 @@ class rgb:
         else:
             return rgb(0, 0, 0)
 
-model_path = "/root/roboboat_ws/src/galaxsea/model.pt"
+model_path = "/root/galaxsea_ws/src/galaxsea/model.pt"
 
 # if not os.path.exists(model_path):
     # print(f"Model not found; downloading {MODEL_URL}")

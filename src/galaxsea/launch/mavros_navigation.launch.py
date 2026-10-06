@@ -8,7 +8,7 @@ import os
 def generate_launch_description():
     galaxsea = get_package_share_directory('galaxsea')
     slam_toolbox = get_package_share_directory('slam_toolbox')
-    slam_params = '/root/roboboat_ws/src/galaxsea/params/slam_params.yaml'
+    slam_params = '/root/galaxsea_ws/src/galaxsea/params/slam_params.yaml'
 
     return LaunchDescription([
         Node(

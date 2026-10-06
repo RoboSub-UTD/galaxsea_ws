@@ -9,9 +9,9 @@ def generate_launch_description():
     galaxsea = get_package_share_directory('galaxsea')
     nav2_bringup = get_package_share_directory('nav2_bringup')
     slam_toolbox = get_package_share_directory('slam_toolbox')
-    nav2_params = '/root/roboboat_ws/src/galaxsea/params/nav2_params.yaml'
-    slam_params = '/root/roboboat_ws/src/galaxsea/params/slam_params.yaml'
-    thruster_params = '/root/roboboat_ws/src/galaxsea/params/auto_thruster_move_params.yaml'
+    nav2_params = '/root/galaxsea_ws/src/galaxsea/params/nav2_params.yaml'
+    slam_params = '/root/galaxsea_ws/src/galaxsea/params/slam_params.yaml'
+    thruster_params = '/root/galaxsea_ws/src/galaxsea/params/auto_thruster_move_params.yaml'
 
     return LaunchDescription([
 

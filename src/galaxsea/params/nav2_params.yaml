@@ -20,7 +20,7 @@ local_costmap:
         enabled: true
         observation_sources: pointcloud
         pointcloud:
-          topic: /pointcloud/filtered
+          topic: /points
           data_type: PointCloud2
           clearing: true
           marking: true
@@ -62,7 +62,7 @@ global_costmap:
         enabled: true
         observation_sources: pointcloud
         pointcloud:
-          topic: /pointcloud/filtered
+          topic: /points
           data_type: PointCloud2
           observation_persistence: 0.5
           clearing: true

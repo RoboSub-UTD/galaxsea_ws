@@ -67,7 +67,7 @@ global_costmap:
           observation_persistence: 0.5
           clearing: true
           marking: true
-          sensor_frame: /scan
+          sensor_frame: /lidar_link
           raytrace_max_range: 82.0
           obstacle_max_range: 80.0
           max_obstacle_height: 5.0

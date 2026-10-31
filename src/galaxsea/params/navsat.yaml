@@ -17,7 +17,7 @@ navsat_transform_node:
     zero_altitude: true     # important for 2D mode
 
     # Broadcast the initial GPS fix as the map origin
-    broadcast_cartesian_transform: true        # ← renamed
+    broadcast_cartesian_transform: false    # ← renamed
     broadcast_utm_transform_as_parent_frame: false
 
     # If your GPS publishes with high covariance, raise this

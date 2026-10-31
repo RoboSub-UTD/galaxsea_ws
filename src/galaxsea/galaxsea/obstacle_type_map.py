@@ -148,7 +148,7 @@ class ObstacleTypeMapNode(Node):
 
     def get_boat_position(self) -> tuple[float, float]:
         try:
-            t = self.tf_buffer.lookup_transform('map', 'wamv/wamv/base_link', rclpy.time.Time())
+            t = self.tf_buffer.lookup_transform('map', 'base_link, rclpy.time.Time())
             return t.transform.translation.x, t.transform.translation.y
         except Exception as e:
             self.get_logger().warn(f'TF lookup failed, defaulting to origin: {e}')

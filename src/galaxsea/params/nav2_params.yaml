@@ -1,7 +1,6 @@
 local_costmap:
   local_costmap:
     ros__parameters:
-      observation_sources: pointcloud
       use_sim_time: true
       global_frame: odom
       robot_base_frame: base_link
@@ -18,18 +17,26 @@ local_costmap:
       obstacle_layer:
         plugin: nav2_costmap_2d::ObstacleLayer
         enabled: true
-        observation_sources: pointcloud
+        observation_sources: pointcloud scan
         pointcloud:
           topic: /points
           data_type: PointCloud2
+          observation_persistence: 0.0
           clearing: true
           marking: true
           sensor_frame: lidar_link
-          observation_persistence: 0.3
-          raytrace_max_range: 5.0
           obstacle_max_range: 4.5
           max_obstacle_height: 5.0
-          min_obstacle_height: -10.0
+          min_obstacle_height: 0.1
+        scan:
+          topic: /scan
+          data_type: LaserScan
+          sensor_frame: lidar_link
+          marking: true
+          clearing: true
+          inf_is_valid: true
+          raytrace_max_range: 5.0
+          obstacle_max_range: 4.5
       inflation_layer:
         plugin: nav2_costmap_2d::InflationLayer
         inflation_radius: 0.55
@@ -41,27 +48,23 @@ global_costmap:
       use_sim_time: true
       global_frame: map
       robot_base_frame: base_link
-      update_frequency: 0.5
-      publish_frequency: 0.5
-      resolution: 0.05
+      rolling_window: true
+      update_frequency: 2.0
+      publish_frequency: 1.0
+      resolution: 0.1
       robot_radius: 0.22
-      width: 1000
-      height: 1000
+      width: 100
+      height: 100
       origin_x: -25.0
       origin_y: -25.0
       track_unknown_space: false
-      plugins: [static_layer, obstacle_layer, inflation_layer]
+      plugins: [obstacle_layer, inflation_layer]
       transform_tolerance: 0.5
       always_send_full_costmap: true
-      static_layer:
-        plugin: nav2_costmap_2d::StaticLayer
-        map_subscribe_transient_local: true
-        subscribe_to_updates: true
-        map_topic: /map
       obstacle_layer:
         plugin: nav2_costmap_2d::ObstacleLayer
         enabled: true
-        observation_sources: pointcloud
+        observation_sources: pointcloud scan
         pointcloud:
           topic: /points
           data_type: PointCloud2
@@ -69,14 +72,23 @@ global_costmap:
           clearing: true
           marking: true
           sensor_frame: lidar_link
-          raytrace_max_range: 10.0
-          obstacle_max_range: 9.0
+          obstacle_max_range: 50.0
+          raytrace_max_range: 50.0
           max_obstacle_height: 5.0
-          min_obstacle_height: -10.0
+          min_obstacle_height: 0.1
+        scan:
+          topic: /scan
+          data_type: LaserScan
+          sensor_frame: lidar_link
+          marking: true
+          clearing: true
+          inf_is_valid: true
+          raytrace_max_range: 50.0
+          obstacle_max_range: 50.0
       inflation_layer:
         plugin: nav2_costmap_2d::InflationLayer
-        inflation_radius: 0.55
-        cost_scaling_factor: 3.0
+        inflation_radius: 0.35
+        cost_scaling_factor: 6.0
 
 controller_server:
   ros__parameters:

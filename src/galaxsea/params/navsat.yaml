@@ -10,7 +10,7 @@ navsat_transform_node:
 
     # Your GPS antenna offset from base_link (meters)
     # MEASURE THIS — critical for accuracy
-    yaw_offset: 0.0        # if GPS heading != base_link heading
+    yaw_offset: 1.41        # if GPS heading != base_link heading
     magnetic_declination_radians: 0.0  # look up for your location
 
     # Zero out the initial GPS position so odom starts at (0,0)

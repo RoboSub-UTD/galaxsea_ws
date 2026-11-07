@@ -22,13 +22,6 @@ def generate_launch_description():
 
         Node(
             package='galaxsea',
-            executable='lidar_preprocess',
-            name='lidar_preprocess',
-            output='screen',
-        ),
-
-        Node(
-            package='galaxsea',
             executable='auto_thruster_move',
             name=thruster_params_type,
             output='screen',

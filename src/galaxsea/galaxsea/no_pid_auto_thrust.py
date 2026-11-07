@@ -30,6 +30,10 @@ class PIDController:
         if self.output_limit is not None:
             output = max(-self.output_limit, min(self.output_limit, output))
         return output
+    
+    def reset(self):
+        self.integral = 0
+        self.previous_error = 0
 
 
 class ThrusterAllocator(Node):
@@ -150,7 +154,7 @@ class ThrusterAllocator(Node):
         effort_y = self.linear_y_pid.update(linear_error_y)
         effort_torque = self.angular_pid.update(angular_error)
 
-        b = np.array([effort_y, effort_x, effort_torque])
+        b = -1 * np.array([effort_y, effort_x, effort_torque])
 
         x = self.pseudo_inv @ b
 
@@ -158,11 +162,17 @@ class ThrusterAllocator(Node):
         if peak > self.max_command:
             x = x * (self.max_command / peak)
 
+        if self.target_linear_x == 0 and self.target_linear_y == 0 and self.target_angular == 0:
+            self.linear_x_pid.reset()
+            self.linear_y_pid.reset()
+            self.angular_pid.reset()
+            x = [0, 0, 0, 0]
+
         msg = ThrusterCommands()
-        msg.front_left = float(-x[0])  
-        msg.back_left = float(-x[1])   
-        msg.front_right = float(-x[2]) 
-        msg.back_right = float(-x[3])  
+        msg.front_left = float(x[0])  
+        msg.back_left = float(x[1])   
+        msg.front_right = float(x[2]) 
+        msg.back_right = float(x[3])  
 
         self.thruster_pub.publish(msg)
 

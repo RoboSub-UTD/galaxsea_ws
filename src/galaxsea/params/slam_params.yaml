@@ -6,7 +6,7 @@ slam_toolbox:
     map_start_pose: [0.0, 0.0, 0.0]
 
     use_sim_time: true
-    slam_mode: mapping
+    mode: mapping
 
     map_frame: map
     odom_frame: odom
